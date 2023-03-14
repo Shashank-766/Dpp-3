@@ -1,0 +1,16 @@
+int dp[101][101];
+    int rec(int n,int k){
+       if(k<=1 or n==1)return k;
+       if(dp[n][k]!=-1)return dp[n][k];
+        int ans=INT_MAX;
+        for(int i=1;i<=k;i++){
+            int temp=max(rec(n-1,i-1),rec(n,k-i));
+            ans=min(ans,temp);
+        }
+        return dp[n][k]=ans+1; 
+    }
+    int eggDrop(int n, int k) {
+        memset(dp,-1,sizeof(dp));
+        int ans=rec(n,k);
+        return ans;
+    }
